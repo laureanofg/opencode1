@@ -1,0 +1,22 @@
+services:
+  opencode:
+    build:
+      context: .
+      dockerfile: Dockerfile
+
+    container_name: opencode
+
+    restart: unless-stopped
+
+    tty: true
+    stdin_open: true
+
+    volumes:
+      - opencode-home:/home/opencode
+      - /var/run/docker.sock:/var/run/docker.sock
+
+    environment:
+      - TZ=America/Bogota
+
+volumes:
+  opencode-home:
