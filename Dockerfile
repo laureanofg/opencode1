@@ -28,6 +28,18 @@ RUN apt-get update && apt-get install -y \
     vim \
     nodejs \
     npm \
+    python3 \
+    python3-pip \
+    python3-venv \
+    dnsutils \
+    iputils-ping \
+    netcat-openbsd \
+    jq \
+    htop \
+    procps \
+    net-tools \
+    telnet \
+    traceroute \    
     && rm -rf /var/lib/apt/lists/*
 
 # Crear usuario
