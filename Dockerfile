@@ -56,7 +56,7 @@ RUN curl -fsSL https://opencode.ai/install | bash
 ENV PATH="/home/opencode/.opencode/bin:${PATH}"
 
 # Puerto web/API
-EXPOSE 4097
+EXPOSE 4096
 
 # Mantener web server activo
-CMD ["opencode", "web", "--hostname", "0.0.0.0", "--port", "4097"]
+CMD ["opencode", "web", "--hostname", "0.0.0.0", "--port", "4096"]
