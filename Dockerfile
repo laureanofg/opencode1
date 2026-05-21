@@ -2,55 +2,56 @@ FROM ubuntu:24.04
 
 ENV DEBIAN_FRONTEND=noninteractive
 
-# Actualizar e instalar dependencias (limpiado de duplicados y sintaxis corregida)
-RUN apt-get update && apt-get install -y --no-install-recommends \
-    apt-transport-https \
+RUN apt-get update && apt-get install -y \
+    git \
+    curl \
     bash \
     ca-certificates \
-    curl \
-    dnsutils \
-    fd-find \
-    git \
+    sudo \
+    zip \
+    unzip \
+    wget \
     gnupg \
-    htop \
-    iputils-ping \
-    jq \
-    less \
-    lsof \
+    openssh-client \
     lsb-release \
+    apt-transport-https \
+    software-properties-common \
+    ripgrep \
+    fd-find \
+    jq \
+    tree \
+    less \
+    procps \
+    tmux \
+    lsof \
     nano \
-    net-tools \
-    netcat-openbsd \
+    vim \
     nodejs \
     npm \
-    openssh-client \
-    procps \
     python3 \
     python3-pip \
     python3-venv \
-    ripgrep \
-    software-properties-common \
-    sudo \
+    dnsutils \
+    iputils-ping \
+    netcat-openbsd \
+    jq \
+    htop \
+    procps \
+    net-tools \
     telnet \
-    tmux \
     traceroute \    
-    tree \
-    unzip \
-    vim \
-    wget \
-    zip \
+    npm \    
     && rm -rf /var/lib/apt/lists/*
 
-# Crear usuario y otorgar permisos sudo
+# Crear usuario
 RUN useradd -m -s /bin/bash opencode \
     && echo "opencode ALL=(ALL) NOPASSWD:ALL" >> /etc/sudoers
 
 USER opencode
 WORKDIR /home/opencode
 
-# Instalar OpenCode usando flags que evitan fallos silenciosos (-fL) 
-# e indicando al bash que corra en modo no interactivo si el script lo soporta
-RUN curl -fsSL https://opencode.ai/install | bash -s -- --yes || (echo "Fallo la instalacion de OpenCode" && exit 1)
+# Instalar OpenCode
+RUN curl -fsSL https://opencode.ai/install | bash
 
 ENV PATH="/home/opencode/.opencode/bin:${PATH}"
 
