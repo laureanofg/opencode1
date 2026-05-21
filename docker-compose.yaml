@@ -20,13 +20,7 @@ services:
       # Seguridad Web UI
       - OPENCODE_SERVER_USERNAME=${OPENCODE_USER}
       - OPENCODE_SERVER_PASSWORD=${OPENCODE_PASS}
-      
-    healthcheck:
-      test: ["CMD", "curl", "-f", "http://localhost:4096"]
-      interval: 30s
-      timeout: 10s
-      retries: 3
-      start_period: 40s
+    
 
       
     volumes:
