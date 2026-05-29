@@ -21,7 +21,11 @@ services:
       - OPENCODE_SERVER_USERNAME=${OPENCODE_USER}
       - OPENCODE_SERVER_PASSWORD=${OPENCODE_PASS}
     
-
+    extra_hosts:
+      - "coolify.metabiblioteca.com.co:135.125.150.34"
+      - "host.docker.internal:host-gateway" 
+      - "koha.local:10.0.0.15"
+      - "dspace.local:10.0.0.20"
       
     volumes:
       - opencode-home:/home/opencode
