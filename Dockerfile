@@ -26,8 +26,6 @@ RUN apt-get update && apt-get install -y \
     lsof \
     nano \
     vim \
-    nodejs \
-    npm \
     python3 \
     python3-pip \
     python3-venv \
@@ -41,6 +39,10 @@ RUN apt-get update && apt-get install -y \
     sqlite3 \
     && rm -rf /var/lib/apt/lists/*
 
+# Node.js 22 LTS
+RUN curl -fsSL https://deb.nodesource.com/setup_22.x | bash - \
+    && apt-get install -y nodejs
+    
 RUN useradd -m -s /bin/bash opencode \
     && echo "opencode ALL=(ALL) NOPASSWD:ALL" >> /etc/sudoers
 
