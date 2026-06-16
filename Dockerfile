@@ -34,12 +34,11 @@ RUN apt-get update && apt-get install -y \
     dnsutils \
     iputils-ping \
     netcat-openbsd \
-    jq \
     htop \
-    procps \
     net-tools \
     telnet \
-    traceroute \  
+    traceroute \
+    sqlite3 \
     && rm -rf /var/lib/apt/lists/*
 
 # Crear usuario
@@ -54,8 +53,15 @@ RUN curl -fsSL https://opencode.ai/install | bash
 
 ENV PATH="/home/opencode/.opencode/bin:${PATH}"
 
-# Puerto web/API
+# Copiar script de inicio
+COPY --chown=opencode:opencode start.sh /home/opencode/start.sh
+
+RUN chmod +x /home/opencode/start.sh
+
+# Puerto OpenCode
 EXPOSE 4096
 
-# Mantener web server activo
-CMD ["opencode", "web", "--hostname", "0.0.0.0", "--port", "4096"]
+# Puerto Claude-Mem Worker
+EXPOSE 37701
+
+CMD ["/home/opencode/start.sh"]
