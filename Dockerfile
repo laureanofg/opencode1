@@ -41,36 +41,25 @@ RUN apt-get update && apt-get install -y \
     sqlite3 \
     && rm -rf /var/lib/apt/lists/*
 
-# Crear usuario
 RUN useradd -m -s /bin/bash opencode \
     && echo "opencode ALL=(ALL) NOPASSWD:ALL" >> /etc/sudoers
 
 USER opencode
 WORKDIR /home/opencode
 
-# Instalar OpenCode
 RUN curl -fsSL https://opencode.ai/install | bash
 
 ENV PATH="/home/opencode/.opencode/bin:${PATH}"
 
-# Copiar script de inicio
-#COPY --chown=opencode:opencode start.sh /home/opencode/start.sh
+USER root
+
 COPY start.sh /usr/local/bin/start.sh
 
-USER root
 RUN chmod +x /usr/local/bin/start.sh
 
-#RUN ls -lah /home/opencode/
 USER opencode
-CMD ["/usr/local/bin/start.sh"]
 
-#USER opencode
-#RUN chmod +x /home/opencode/start.sh
-
-# Puerto OpenCode
 EXPOSE 4096
-
-# Puerto Claude-Mem Worker
 EXPOSE 37701
 
-CMD ["/home/opencode/start.sh"]
+CMD ["/usr/local/bin/start.sh"]
