@@ -39,8 +39,7 @@ RUN apt-get update && apt-get install -y \
     procps \
     net-tools \
     telnet \
-    traceroute \    
-    npm \    
+    traceroute \  
     && rm -rf /var/lib/apt/lists/*
 
 # Crear usuario
