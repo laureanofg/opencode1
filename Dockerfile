@@ -54,11 +54,18 @@ RUN curl -fsSL https://opencode.ai/install | bash
 ENV PATH="/home/opencode/.opencode/bin:${PATH}"
 
 # Copiar script de inicio
-COPY --chown=opencode:opencode start.sh /home/opencode/start.sh
+#COPY --chown=opencode:opencode start.sh /home/opencode/start.sh
+COPY start.sh /usr/local/bin/start.sh
 
-RUN ls -lah /home/opencode/
+USER root
+RUN chmod +x /usr/local/bin/start.sh
 
-RUN chmod +x /home/opencode/start.sh
+#RUN ls -lah /home/opencode/
+USER opencode
+CMD ["/usr/local/bin/start.sh"]
+
+#USER opencode
+#RUN chmod +x /home/opencode/start.sh
 
 # Puerto OpenCode
 EXPOSE 4096
