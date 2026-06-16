@@ -56,6 +56,8 @@ ENV PATH="/home/opencode/.opencode/bin:${PATH}"
 # Copiar script de inicio
 COPY --chown=opencode:opencode start.sh /home/opencode/start.sh
 
+RUN ls -lah /home/opencode/
+
 RUN chmod +x /home/opencode/start.sh
 
 # Puerto OpenCode
