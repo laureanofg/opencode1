@@ -13,11 +13,14 @@ services:
 
     ports:
       - "4096:4096"
-
+      - "37701:37701"
     environment:
       - TZ=America/Bogota
-
-      # Seguridad Web UI
+      - CLAUDE_MEM_RUNTIME: worker
+# Recomendado: configurar en Coolify como Secret 
+      - CLAUDE_MEM_PROVIDER: openrouter 
+      - CLAUDE_MEM_OPENROUTER_API_KEY: ${CLAUDE_MEM_OPENROUTER_API_KEY}
+# Seguridad Web UI
       - OPENCODE_SERVER_USERNAME=${OPENCODE_USER}
       - OPENCODE_SERVER_PASSWORD=${OPENCODE_PASS}
     
