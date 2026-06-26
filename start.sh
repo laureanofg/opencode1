@@ -6,7 +6,7 @@ echo "=================================="
 echo "Iniciando Claude-Mem..."
 echo "=================================="
 
-npx claude-mem start || true
+exec  npx claude-mem start || true
 
 echo "=================================="
 echo "Iniciando OpenCode..."
