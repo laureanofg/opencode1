@@ -1,12 +1,12 @@
 #!/bin/bash
-
 set -e
 
 echo "=================================="
 echo "Iniciando Claude-Mem..."
 echo "=================================="
 
-exec  npx claude-mem start || true
+npx claude-mem start &
+sleep 3
 
 echo "=================================="
 echo "Iniciando OpenCode..."
