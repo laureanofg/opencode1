@@ -8,6 +8,7 @@ RUN apt-get update && apt-get install -y \
     bash \
     ca-certificates \
     sudo \
+    xdg-utils \
     zip \
     unzip \
     wget \
